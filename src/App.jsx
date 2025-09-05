@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
-import MainPage from './MainPage';
-import QS from './QS';
-import StudentDash from './StudentDash';
-import StudentLogin from './StudentLogin';
-import StudentResult from './StudentResult';
+import Questions from './components/Questions'
+import Login from './components/Login'
+import Dashboard from './components/Dashboard'
+import Result from './components/Result'
+import Homepage from './components/Homepage'
 
 function App() {
   const [page, setPage] = useState('main');
@@ -13,17 +12,17 @@ function App() {
   const renderPage = () => {
     switch (page) {
       case 'main':
-  return <MainPage onNavigate={setPage} />;
-      case 'qs':
-        return <QS />;
+  return <Homepage onNavigate={setPage} />;
+      case 'questions':
+        return <Questions />;
       case 'dashboard':
-        return <StudentDash />;
+        return <Dashboard />;
       case 'login':
-        return <StudentLogin />;
+        return <Login />;
       case 'result':
-        return <StudentResult />;
+        return <Result />;
       default:
-  return <MainPage onNavigate={setPage} />;
+  return <Homepage onNavigate={setPage} />;
     }
   };
 
