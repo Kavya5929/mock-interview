@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import React, { useState } from 'react';
+import MainPage from './MainPage';
+import QS from './QS';
+import StudentDash from './StudentDash';
+import StudentLogin from './StudentLogin';
+import StudentResult from './StudentResult';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [page, setPage] = useState('main');
 
+  // Simple navigation handler
+  const renderPage = () => {
+    switch (page) {
+      case 'main':
+  return <MainPage onNavigate={setPage} />;
+      case 'qs':
+        return <QS />;
+      case 'dashboard':
+        return <StudentDash />;
+      case 'login':
+        return <StudentLogin />;
+      case 'result':
+        return <StudentResult />;
+      default:
+  return <MainPage onNavigate={setPage} />;
+    }
+  };
+
+  // No nav bar, just render the selected page
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <div style={{color:'red', fontWeight:'bold', textAlign:'center'}}></div>
+      {renderPage()}
+    </div>
+  );
 }
 
-export default App
+export default App;
